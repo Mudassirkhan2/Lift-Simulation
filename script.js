@@ -40,7 +40,6 @@ form.addEventListener("submit", (e) => {
 </div>`
     );
 
-    
     // events for Button up
 
     const btnUp = [...document.querySelectorAll(".btn-up")];
@@ -49,7 +48,7 @@ form.addEventListener("submit", (e) => {
     btnUp.map(function (block, index) {
       block.addEventListener("click", function () {
         let countup = index * 2;
-        let translateValue = -10 * index;
+        let translateValue = -10 * index - 0.4;
         let transitionTime = Math.abs(countup - count);
         lift.style.transition = `transform ${transitionTime}s ease`;
         lift.style.transform = `translateY(${translateValue}rem)`;
@@ -63,7 +62,7 @@ form.addEventListener("submit", (e) => {
     btnDown.map(function (block, index) {
       block.addEventListener("click", function () {
         let countup = (index + 1) * 2;
-        let translateValue = -10 * index - 10;
+        let translateValue = -10 * index - 0.4 - 10;
         let transitionTime = Math.abs(countup - count);
         lift.style.transition = `transform ${transitionTime}s ease`;
         lift.style.transform = `translateY(${translateValue}rem)`;
