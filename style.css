@@ -3,6 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  font-size: 16px;
+}
+
 body {
   max-width: 1200px;
   width: 90%;
@@ -14,6 +19,7 @@ body {
   flex-direction: column;
   background-color: #243763;
 }
+
 .container {
   width: 600px;
   margin: 0 auto;
@@ -57,7 +63,7 @@ label {
   cursor: pointer;
 }
 #btn-up-first {
-  margin-top: 7.5rem;
+  margin-top: 7.56rem;
 }
 .btn-down {
   background-color: yellow;
@@ -100,4 +106,10 @@ input[type="number"]:focus {
 .btn-up:active,
 .btn-down:active {
   background: cyan;
+}
+@media (max-width: 475px) {
+  h1 {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 }
