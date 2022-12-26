@@ -36,7 +36,7 @@ Create a web app where you can simulate lift mechanics for a client
       - JS Engine that is the controller for which lift goes where
       - Dumb UI that responds to controller's commands
       
-     Milestone 2:
+     Milestone 2::
       - Lift having doors open in 2.5s, then closing in another 2.5s
       - Lift moving at 2s per floor
       - Lift stopping at every floor where it was called
