@@ -14,10 +14,15 @@
 
   <body>
     <h1>Welcome to Lift Simulation</h1>
-    <form id="form">
-      <label for="inputNumber">Number of floors : </label>
-      <input type="number" id="inputNumber" placeholder="floors" />
-    </form>
+    <div id="openingPage">
+      <form id="form">
+        <div class="input-container">
+          <label for="inputNumber">Number of floors : </label>
+          <input type="number" id="inputNumber" placeholder="floors" />
+        </div>
+      </form>
+      <button id="generate">Generate</button>
+    </div>
 
     <div class="container hidden">
       <!-- <div class="floor-container">
@@ -34,9 +39,11 @@
 
       <!-- ground floor  -->
       <div class="floor-container">
-        <span><button class="btn-up" id="btn-up-first">Up</button></span>
-
-        <div class="lift"></div>
+        <span><button class="btn btn-up" id="btn-up-first">Up</button></span>
+        <div class="lift">
+          <div class="left-door"></div>
+          <div class="right-door"></div>
+        </div>
 
         <div class="horizontal-flex">
           <hr />
