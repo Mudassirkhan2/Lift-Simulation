@@ -1,14 +1,17 @@
 let inputNumber = document.getElementById("inputNumber");
-const form = document.getElementById("form");
+const openingPage = document.getElementById("openingPage");
+const generate = document.getElementById("generate");
 const container = document.querySelector(".container");
 const lift = document.querySelector(".lift");
+const leftDoor = document.querySelector(".left-door");
+const rightDoor = document.querySelector(".right-door");
 
-form.addEventListener("submit", (e) => {
+generate.addEventListener("click", (e) => {
   e.preventDefault();
   inputNumber = inputNumber.value;
   if (inputNumber > 0 && inputNumber < 100) {
     container.classList.remove("hidden");
-    form.classList.add("hidden");
+    openingPage.classList.add("hidden");
 
     for (let index = 1; index < inputNumber; index++) {
       container.insertAdjacentHTML(
@@ -45,27 +48,50 @@ form.addEventListener("submit", (e) => {
     btnUp.reverse();
     btnUp.map(function (block, index) {
       block.addEventListener("click", function () {
-        let countup = index * 2;
-        let translateValue = -10 * index - 1;
+        let countup = index * 2; //multiplied by 2 to make every transition for floor to take 2s
 
-        let buttons = document.querySelectorAll(".btn");
+        //To Check that user not clicked the same floor
+        if (count != countup) {
+          let translateValue = -10 * index - 1;
 
-        // disable buttons
-        buttons.forEach((button) => {
-          button.setAttribute("disabled", true);
-        });
+          let buttons = document.querySelectorAll(".btn");
 
-        let transitionTime = Math.abs(countup - count);
-        lift.style.transform = `translateY(${translateValue}rem)`;
-        lift.style.transition = `transform ${transitionTime}s ease  `;
-        // transition finished event
-        lift.addEventListener("transitionend", () => {
-          // enable buttons
+          // disable buttons
           buttons.forEach((button) => {
-            button.removeAttribute("disabled");
+            button.setAttribute("disabled", true);
           });
-        });
-        return (count = countup);
+
+          let transitionTime = Math.abs(countup - count);
+          lift.style.transform = `translateY(${translateValue}rem)`;
+          lift.style.transition = `transform ${transitionTime}s ease  `;
+          // transition finished event
+          lift.addEventListener("transitionend", () => {
+            // enable buttons
+
+            // opens the doors
+            leftDoor.classList.add("left-move-open");
+            rightDoor.classList.add("right-move-open");
+
+            // to close the doors
+            leftDoor.addEventListener("transitionend", () => {
+              leftDoor.classList.add("left-move-close");
+              rightDoor.classList.add("right-move-close");
+
+              //  to remove all the classes after transition
+              setTimeout(() => {
+                leftDoor.classList.remove("left-move-close");
+                rightDoor.classList.remove("right-move-close");
+                leftDoor.classList.remove("left-move-open");
+                rightDoor.classList.remove("right-move-open");
+                // enables the buttons
+                buttons.forEach((button) => {
+                  button.removeAttribute("disabled");
+                });
+              }, 2500);
+            });
+          });
+          return (count = countup);
+        }
       });
     });
 
@@ -75,8 +101,8 @@ form.addEventListener("submit", (e) => {
     btnDown.map(function (block, index) {
       block.addEventListener("click", function () {
         lift.classList.add("move-up");
-        let countup = (index + 1) * 2;
-        let translateValue = -10 * index - 11;
+        let countup = (index + 1) * 2; //multiplied by 2 to make every transition for floor to take 2s
+        let translateValue = -10 * index - 11; //added 10 extra because down is starting from 1st floor
         btndownfunc();
         let buttons = document.querySelectorAll(".btn");
 
@@ -91,8 +117,27 @@ form.addEventListener("submit", (e) => {
           // transition finished event
           lift.addEventListener("transitionend", () => {
             // enable buttons
-            buttons.forEach((button) => {
-              button.removeAttribute("disabled");
+
+            // opens the doors
+            leftDoor.classList.add("left-move-open");
+            rightDoor.classList.add("right-move-open");
+
+            // to close the doors
+            leftDoor.addEventListener("transitionend", () => {
+              leftDoor.classList.add("left-move-close");
+              rightDoor.classList.add("right-move-close");
+
+              //  to remove all the classes after transition
+              setTimeout(() => {
+                leftDoor.classList.remove("left-move-close");
+                rightDoor.classList.remove("right-move-close");
+                leftDoor.classList.remove("left-move-open");
+                rightDoor.classList.remove("right-move-open");
+                // enables the buttons
+                buttons.forEach((button) => {
+                  button.removeAttribute("disabled");
+                });
+              }, 2500);
             });
           });
           return (count = countup);
