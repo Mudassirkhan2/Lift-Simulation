@@ -59,8 +59,14 @@ form {
   margin-top: 2rem;
   background-color: #ffb100;
   font-weight: 600;
+  cursor: pointer;
 }
-
+#generate:hover {
+  background-color: #2ee59d;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
 .btn-up,
 .btn-down {
   position: relative;
@@ -68,6 +74,7 @@ form {
   padding: 0.25rem 0.7rem;
   background-color: forestgreen;
   border: none;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   border-radius: 5px;
   margin-top: 2rem;
   cursor: pointer;
@@ -129,11 +136,12 @@ input[type="number"]:focus {
   display: inline-flex;
   width: 3rem;
   height: 6rem;
-  background: dodgerblue;
+  background-color: teal;
   position: relative;
   bottom: -1rem;
   left: 1rem;
   overflow: hidden;
+  border: 1px solid black;
 }
 .left-door {
   background: rgb(101, 103, 100);
@@ -148,21 +156,27 @@ input[type="number"]:focus {
 .left-move-open {
   transform: translate(-100%);
   transition-duration: 2.5s;
+  /* transition-timing-function: ease-in; */
 }
 .right-move-open {
   transform: translate(100%);
   transition-duration: 2.5s;
+  /* transition-timing-function: ease-in; */
 }
 .left-move-close {
   transform: translate(0%);
   transition-duration: 2.5s;
+  /* transition-timing-function: ease-in; */
 }
 .right-move-close {
   transform: translate(0%);
   transition-duration: 2.5s;
+  /* transition-timing-function: ease-in; */
 }
 /* styling of lift ends */
-
+.btn-clicked {
+  border: 2px solid red;
+}
 @media (max-width: 475px) {
   h1 {
     font-size: 1rem;
