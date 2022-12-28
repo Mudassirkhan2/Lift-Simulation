@@ -42,19 +42,20 @@ generate.addEventListener("click", (e) => {
  </div>
 </div>`
     );
+
     // events for Button up
     const btnUp = [...document.querySelectorAll(".btn-up")];
     let count = 0;
     btnUp.reverse();
     btnUp.map(function (block, index) {
       block.addEventListener("click", function () {
+        block.classList.add("btn-clicked");
         let countup = index * 2; //multiplied by 2 to make every transition for floor to take 2s
 
+        const buttons = document.querySelectorAll(".btn");
         //To Check that user not clicked the same floor
         if (count != countup) {
           let translateValue = -10 * index - 1;
-
-          let buttons = document.querySelectorAll(".btn");
 
           // disable buttons
           buttons.forEach((button) => {
@@ -66,31 +67,20 @@ generate.addEventListener("click", (e) => {
           lift.style.transition = `transform ${transitionTime}s ease  `;
           // transition finished event
           lift.addEventListener("transitionend", () => {
-            // enable buttons
+            block.classList.remove("btn-clicked");
 
-            // opens the doors
-            leftDoor.classList.add("left-move-open");
-            rightDoor.classList.add("right-move-open");
-
-            // to close the doors
-            leftDoor.addEventListener("transitionend", () => {
-              leftDoor.classList.add("left-move-close");
-              rightDoor.classList.add("right-move-close");
-
-              //  to remove all the classes after transition
-              setTimeout(() => {
-                leftDoor.classList.remove("left-move-close");
-                rightDoor.classList.remove("right-move-close");
-                leftDoor.classList.remove("left-move-open");
-                rightDoor.classList.remove("right-move-open");
-                // enables the buttons
-                buttons.forEach((button) => {
-                  button.removeAttribute("disabled");
-                });
-              }, 2500);
-            });
+            liftAnimation(block, buttons);
           });
           return (count = countup);
+        }
+        //if same floor
+        else {
+          block.classList.remove("btn-clicked");
+          // disable buttons
+          buttons.forEach((button) => {
+            button.setAttribute("disabled", true);
+          });
+          liftAnimation(block, buttons);
         }
       });
     });
@@ -100,47 +90,40 @@ generate.addEventListener("click", (e) => {
     btnDown.reverse();
     btnDown.map(function (block, index) {
       block.addEventListener("click", function () {
-        lift.classList.add("move-up");
-        let countup = (index + 1) * 2; //multiplied by 2 to make every transition for floor to take 2s
-        let translateValue = -10 * index - 11; //added 10 extra because down is starting from 1st floor
-        btndownfunc();
-        let buttons = document.querySelectorAll(".btn");
+        block.classList.add("btn-clicked");
+        const buttons = document.querySelectorAll(".btn");
 
-        // disable buttons
-        buttons.forEach((button) => {
-          button.setAttribute("disabled", true);
-        });
-        async function btndownfunc() {
+        // lift.classList.add("move-up");
+        let countup = (index + 1) * 2; //multiplied by 2 to make every transition for floor to take 2s
+        //To Check that user not clicked the same floor
+        if (count != countup) {
+          let translateValue = -10 * index - 11; //added 10 extra because down is starting from 1st floor
+
+          // disable buttons
+          buttons.forEach((button) => {
+            button.setAttribute("disabled", true);
+          });
+
           let transitionTime = Math.abs(countup - count);
           lift.style.transform = `translateY(${translateValue}rem)`;
           lift.style.transition = `transform  ${transitionTime}s ease  `;
+
           // transition finished event
           lift.addEventListener("transitionend", () => {
-            // enable buttons
+            block.classList.remove("btn-clicked");
 
-            // opens the doors
-            leftDoor.classList.add("left-move-open");
-            rightDoor.classList.add("right-move-open");
-
-            // to close the doors
-            leftDoor.addEventListener("transitionend", () => {
-              leftDoor.classList.add("left-move-close");
-              rightDoor.classList.add("right-move-close");
-
-              //  to remove all the classes after transition
-              setTimeout(() => {
-                leftDoor.classList.remove("left-move-close");
-                rightDoor.classList.remove("right-move-close");
-                leftDoor.classList.remove("left-move-open");
-                rightDoor.classList.remove("right-move-open");
-                // enables the buttons
-                buttons.forEach((button) => {
-                  button.removeAttribute("disabled");
-                });
-              }, 2500);
-            });
+            liftAnimation(block, buttons);
           });
           return (count = countup);
+        }
+        //if same floor
+        else {
+          block.classList.remove("btn-clicked");
+          // disable buttons
+          buttons.forEach((button) => {
+            button.setAttribute("disabled", true);
+          });
+          liftAnimation(block, buttons);
         }
       });
     });
@@ -149,3 +132,26 @@ generate.addEventListener("click", (e) => {
     location.reload();
   }
 });
+
+function liftAnimation(block, buttons) {
+  // opens the doors
+  leftDoor.classList.add("left-move-open");
+  rightDoor.classList.add("right-move-open");
+
+  // to close the doors
+  leftDoor.addEventListener("transitionend", () => {
+    leftDoor.classList.add("left-move-close");
+    rightDoor.classList.add("right-move-close");
+
+    //  to remove all the classes after transition
+    setTimeout(() => {
+      leftDoor.classList.remove("left-move-close");
+      rightDoor.classList.remove("right-move-close");
+      leftDoor.classList.remove("left-move-open");
+      rightDoor.classList.remove("right-move-open");
+      buttons.forEach((button) => {
+        button.removeAttribute("disabled");
+      });
+    }, 2500);
+  });
+}
