@@ -41,3 +41,19 @@ Create a web app where you can simulate lift mechanics for a client
       - Lift moving at 2s per floor
       - Lift stopping at every floor where it was called
       - Mobile friendly design -->
+
+
+
+
+
+This is task given by realdev squad :-
+
+live link :-https://mudassirkhan2.github.io/Lift-Simulation-/?
+Desktop veiw
+![screencapture-mudassirkhan2-github-io-Lift-Simulation-2023-02-05-12_53_19](https://user-images.githubusercontent.com/106579572/216806931-766f0447-9527-4588-9561-061655e20db5.png)
+![screencapture-mudassirkhan2-github-io-Lift-Simulation-2023-02-05-12_55_21](https://user-images.githubusercontent.com/106579572/216806957-31262791-90f4-496e-b856-a9ec57ddf437.png)
+
+Mobile veiw :-
+![screencapture-mudassirkhan2-github-io-Lift-Simulation-2023-02-05-12_57_02](https://user-images.githubusercontent.com/106579572/216807015-64482d99-bfed-4b86-b71d-8a27369e790e.png)
+
+![screencapture-mudassirkhan2-github-io-Lift-Simulation-2023-02-05-12_56_20](https://user-images.githubusercontent.com/106579572/216806982-93a75ab3-3a55-43d7-bdb3-54157a9fe2ab.png)
