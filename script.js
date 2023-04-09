@@ -1,52 +1,109 @@
-let inputNumber = document.getElementById("inputNumber");
+let inputFloor = document.getElementById("inputFloor");
+let inputLift = document.getElementById("inputLift");
 const openingPage = document.getElementById("openingPage");
 const generate = document.getElementById("generate");
-const container = document.querySelector(".container");
+const container = document.querySelector(".container") ;
+const firstLift = document.querySelector(".first-lift") ;
 const lift = document.querySelector(".lift");
 const leftDoor = document.querySelector(".left-door");
 const rightDoor = document.querySelector(".right-door");
 
 generate.addEventListener("click", (e) => {
   e.preventDefault();
-  inputNumber = inputNumber.value;
-  if (inputNumber > 0 && inputNumber < 100) {
+  inputFloor = inputFloor.value;
+  inputLift = inputLift.value;
+
+  if (inputFloor > 0 && inputFloor < 100) {
     container.classList.remove("hidden");
     openingPage.classList.add("hidden");
 
-    for (let index = 1; index < inputNumber; index++) {
+    for (let index = 1; index < inputFloor; index++) {
       container.insertAdjacentHTML(
         "afterbegin",
         ` <div class="floor-container">
-   <div class="btn-container">
-     <span><button class=" btn btn-up">Up</button></span>
+            <div class="btn-container">
+              <span><button class=" btn btn-up">Up</button></span>
 
-     <span><button class=" btn btn-down">Down</button></span>
-   </div>
-   <div class="horizontal-flex">
-     <hr/>
-     <p>Floor ${index}</p>
-   </div>
- </div>`
+              <span><button class=" btn btn-down">Down</button></span>
+            </div>
+            <div class="horizontal-flex">
+              <hr/>
+              <p>Floor ${index}</p>
+            </div>
+          </div>`
       );
     }
     container.insertAdjacentHTML(
       "afterbegin",
       ` <div class="floor-container">
- <div class="btn-container">
+          <div class="btn-container">
+            <span><button class=" btn btn-down">Down</button></span>
+          </div>
+          <div class="horizontal-flex">
+            <hr/>
+            <p>Floor ${inputFloor}</p>
+          </div>
+        </div>`
 
-   <span><button class=" btn btn-down">Down</button></span>
- </div>
- <div class="horizontal-flex">
-   <hr/>
-   <p>Floor ${inputNumber}</p>
- </div>
-</div>`
     );
+    
+   
+    if(window.innerWidth <= 500 ){
+      console.log("mobile device")
+      if( inputLift>0 && inputLift < 4){
+        liftGeneration()
+      }
+      else{
+        alert("As you are in Small device Enter the Value in between 0 to 4");
+        location.reload();
+      }
+    }
+    else if( window.innerWidth > 500 && window.innerWidth <= 768){
+      console.log("im in desktop less than 768")
+      if( inputLift>0 && inputLift < 5){
+        liftGeneration()
+      }
+      else{
+        alert(" Enter the Value in between 0 to 5");
+        location.reload();
+      }
+    }
+    else if( window.innerWidth > 500 && window.innerWidth <= 1024){
+      console.log("im in desktop less than 1024")
+      if( inputLift>0 && inputLift < 7){
+        liftGeneration()
+      }
+      else{
+        alert(" Enter the Value in between 0 to 7");
+        location.reload();
+      }
+    }
+    else{
+      if( inputLift>0 && inputLift < 11){
+        liftGeneration()
+      }
+      else{
+        alert(" Enter the Value in between 0 to 11");
+        location.reload();
+      }
+    }
 
+    function liftGeneration(){
+      for (let index = 1; index < inputLift; index++) {
+        firstLift.insertAdjacentHTML(
+          "afterend",
+            ` <div class="lift">
+                  <div class="left-door"></div>
+                  <div class="right-door"></div>
+              </div> `
+        )
+      }
+  
+    }
     // events for Button up
     const btnUp = [...document.querySelectorAll(".btn-up")];
     let count = 0;
-    btnUp.reverse();
+    btnUp.reverse();  //reversed the order of array
     btnUp.map(function (block, index) {
       block.addEventListener("click", function () {
         block.classList.add("btn-clicked");
@@ -68,7 +125,6 @@ generate.addEventListener("click", (e) => {
           // transition finished event
           lift.addEventListener("transitionend", () => {
             block.classList.remove("btn-clicked");
-
             liftAnimation(block, buttons);
           });
           return (count = countup);
@@ -128,7 +184,7 @@ generate.addEventListener("click", (e) => {
       });
     });
   } else {
-    alert("Please Enter a Value between 0 and 100");
+    alert("Please Enter a Floors Value between 0 and 100");
     location.reload();
   }
 });
