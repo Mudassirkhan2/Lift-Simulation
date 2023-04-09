@@ -54,7 +54,7 @@ generate.addEventListener("click", (e) => {
         liftGeneration()
       }
       else{
-        alert("As you are in Small device Enter the Value in between 0 to 4");
+        alert("As you are in Small device Enter the Value of lifts in between 0 to 4");
         location.reload();
       }
     }
@@ -64,7 +64,7 @@ generate.addEventListener("click", (e) => {
         liftGeneration()
       }
       else{
-        alert(" Enter the Value in between 0 to 5");
+        alert(" Enter the Value of lifts in between 0 to 5");
         location.reload();
       }
     }
@@ -74,7 +74,7 @@ generate.addEventListener("click", (e) => {
         liftGeneration()
       }
       else{
-        alert(" Enter the Value in between 0 to 7");
+        alert(" Enter the Value of lifts in between 0 to 7");
         location.reload();
       }
     }
