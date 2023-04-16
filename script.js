@@ -104,10 +104,9 @@ generate.addEventListener("click", (e) => {
     const lift = [...document.querySelectorAll(".lift")];
     const leftDoor = document.querySelectorAll(".left-door");
     const rightDoor = document.querySelectorAll(".right-door");  
-    let indexLift =1
+    let indexLift =0
     let liftanimationindex=0
     function liftAnimation(block, buttons,liftanimationindex,indexLift) {
-      console.log(liftanimationindex)
       // opens the doors
       leftDoor[liftanimationindex].classList.add("left-move-open");
 
