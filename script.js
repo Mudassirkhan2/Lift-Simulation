@@ -106,26 +106,26 @@ generate.addEventListener("click", (e) => {
     const rightDoor = document.querySelectorAll(".right-door");  
     let indexLift =0
     let liftanimationindex=0
+    
+    // function for lift animation
     function liftAnimation(block, buttons,liftanimationindex,indexLift) {
       // opens the doors
       leftDoor[liftanimationindex].classList.add("left-move-open");
-
       rightDoor[liftanimationindex].classList.add("right-move-open");
     
       // to close the doors
       leftDoor[liftanimationindex].addEventListener("transitionend", () => {
         leftDoor[liftanimationindex].classList.add("left-move-close");
-
         rightDoor[liftanimationindex].classList.add("right-move-close");
-    
         //  to remove all the classes after transition
         setTimeout(() => {
           leftDoor[liftanimationindex].classList.remove("left-move-close");
           rightDoor[liftanimationindex].classList.remove("right-move-close");
           leftDoor[liftanimationindex].classList.remove("left-move-open");
           rightDoor[liftanimationindex].classList.remove("right-move-open");
-            indexLift =0
-            console.log("transition end index " ,indexLift)
+          //make index to 0 after the last lift
+            indexLift=0
+            console.log("transition ended  index " ,indexLift)
         }, 2500);
       });
     }
@@ -143,23 +143,22 @@ generate.addEventListener("click", (e) => {
         if (count != countup) {
           let translateValue = -10 * index - 1;
           let transitionTime = Math.abs(countup - count);
-          console.log(indexLift)
+          console.log(indexLift, "indexLift before transition")
           lift[indexLift].style.transform = `translateY(${translateValue}rem)`;
           lift[indexLift].style.transition = `transform ${transitionTime}s ease`;
 
           function transitionRunListener() {
-            console.log("transition start")
-            console.log(indexLift)
-            if(indexLift < inputFloor-1){
+            console.log("transition start", indexLift)
+            if(indexLift < inputLift-1){    //to check that index is not greater than the number of lifts
               liftanimationindex = indexLift
               indexLift = indexLift + 1
             }
             else{
-              console.log("hii")
+              console.log("indexLift else run",indexLift)
               liftanimationindex = indexLift
               indexLift=0
             }
-            console.log("transition start index ", indexLift)
+            console.log("transition next start index ", indexLift)
             this.removeEventListener("transitionrun", transitionRunListener);
           }
           // transition finished event
@@ -172,7 +171,6 @@ generate.addEventListener("click", (e) => {
           
           lift[indexLift].addEventListener("transitionrun", transitionRunListener);
           lift[indexLift].addEventListener("transitionend", transitionEndListener);
-          
           return (count = countup);
         }
         //if same floor
@@ -196,9 +194,6 @@ generate.addEventListener("click", (e) => {
         //To Check that user not clicked the same floor
         if (count != countup) {
           let translateValue = -10 * index - 11; //added 10 extra because down is starting from 1st floor
-
-         
-
           let transitionTime = Math.abs(countup - count);
           lift[indexLift].style.transform = `translateY(${translateValue}rem)`;
           lift[indexLift].style.transition = `transform  ${transitionTime}s ease  `;
@@ -206,12 +201,11 @@ generate.addEventListener("click", (e) => {
           function transitionRunListener() {
             console.log("transition start")
             console.log(indexLift)
-            if(indexLift < inputFloor-1){
+            if(indexLift < inputLift-1){
               liftanimationindex = indexLift
               indexLift = indexLift + 1
             }
             else{
-              console.log("hii")
               liftanimationindex = indexLift
               indexLift=0
             }
